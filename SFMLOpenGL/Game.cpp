@@ -141,10 +141,10 @@ void Game::update()
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B))
 	{
-		FL = FL * scale;
-		FR = FR * scale;
-		BL = BL * scale;
-		BR = BR * scale;
+		FL = FL / scale;
+		FR = FR / scale;
+		BL = BL / scale;
+		BR = BR / scale;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
