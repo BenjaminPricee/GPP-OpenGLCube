@@ -39,6 +39,16 @@ void Game::initialize()
 	gluPerspective(45.0, window.getSize().x / window.getSize().y, 1.0, 500.0);
 	glMatrixMode(GL_MODELVIEW);
 
+	scale.x1 = 1.00025f;
+	scale.y1 = 1.00025f;
+	scale.z1 = 1.00025f;
+	scale.x2 = 1.00025f;
+	scale.y2 = 1.00025f;
+	scale.z2 = 1.00025f;
+	scale.x3 = 1.00025f;
+	scale.y3 = 1.00025f;
+	scale.z3 = 1.00025f;
+
 	rotate.x1 = cos(0.00025f);
 	rotate.y1 = 0;
 	rotate.z1 = sin(0.00025f);
@@ -73,43 +83,43 @@ void Game::initialize()
 	/// 
 	FL.x1 = -1;
 	FL.y1 = 1;
-	FL.z1 = -5;
+	FL.z1 = -1;
 	FL.x2 = -1;
 	FL.y2 = -1;
-	FL.z2 = -5;
+	FL.z2 = -1;
 	FL.x3 = 1;
 	FL.y3 = -1;
-	FL.z3 = -5;
+	FL.z3 = -1;
 
 	FR.x1 = -1;
 	FR.y1 = 1;
-	FR.z1 = -5;
+	FR.z1 = -1;
 	FR.x2 = 1;
 	FR.y2 = 1;
-	FR.z2 = -5;
+	FR.z2 = -1;
 	FR.x3 = 1;
 	FR.y3 = -1;
-	FR.z3 = -5;
+	FR.z3 = -1;
 
 	BL.x1 = -1;
 	BL.y1 = 1;
-	BL.z1 = -10;
+	BL.z1 = 1;
 	BL.x2 = -1;
 	BL.y2 = -1;
-	BL.z2 = -10;
+	BL.z2 = 1;
 	BL.x3 = 1;
 	BL.y3 = -1;
-	BL.z3 = -10;
+	BL.z3 = 1;
 
 	BR.x1 = -1;
 	BR.y1 = 1;
-	BR.z1 = -10;
+	BR.z1 = 1;
 	BR.x2 = 1;
 	BR.y2 = 1;
-	BR.z2 = -10;
+	BR.z2 = 1;
 	BR.x3 = 1;
 	BR.y3 = -1;
-	BR.z3 = -10;
+	BR.z3 = 1;
 
 	std::cout << "ok" << std::endl;
 
@@ -128,6 +138,13 @@ void Game::update()
 		FR = FR * rotate;
 		BL = BL * rotate;
 		BR = BR * rotate;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B))
+	{
+		FL = FL * scale;
+		FR = FR * scale;
+		BL = BL * scale;
+		BR = BR * scale;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{

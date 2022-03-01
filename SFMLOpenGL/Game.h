@@ -19,6 +19,7 @@ public:
 
 private:
 	Matrix3B rotate;
+	Matrix3B scale;
 	Matrix3B moveZ;
 	Matrix3B moveX;
 
