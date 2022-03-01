@@ -19,9 +19,12 @@ public:
 
 private:
 	Matrix3B rotate;
+	Matrix3B moveZ;
+	Matrix3B moveX;
 
 	Matrix3B FL;
 	Matrix3B FR;
+
 	Matrix3B BL;
 	Matrix3B BR;
 
