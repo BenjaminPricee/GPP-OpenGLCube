@@ -17,18 +17,13 @@ public:
 	~Game();
 	void run();
 
-	Vector3B top;
-	Vector3B left;
-	Vector3B right;
-
-	Vector3B moveRight;
-	Vector3B scaleUp;
-
-	Matrix3B rotate;
-	Matrix3B rotate2;
 private:
+	Matrix3B rotate;
 
-	bool sideMove = false;
+	Matrix3B FL;
+	Matrix3B FR;
+	Matrix3B BL;
+	Matrix3B BR;
 
 	Window window;
 	bool isRunning = false;

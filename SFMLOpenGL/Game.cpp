@@ -39,55 +39,61 @@ void Game::initialize()
 	gluPerspective(45.0, window.getSize().x / window.getSize().y, 1.0, 500.0);
 	glMatrixMode(GL_MODELVIEW);
 
+	rotate.x1 = cos(0.00025f);
+	rotate.y1 = 0;
+	rotate.z1 = sin(0.00025f);
+	rotate.x2 = 0;
+	rotate.y2 = 1;
+	rotate.z2 = 0;
+	rotate.x3 = -sin(0.00025f);
+	rotate.y3 = 0;
+	rotate.z3 = cos(0.00025f);
 
-	//Vector3B work(2, 12, 6);
-	//Vector3B b(1, 3, 2);
+	////////////////////////////////////////////////////////////////////////////
+	/// 
+	FL.x1 = -1;
+	FL.y1 = 1;
+	FL.z1 = -5;
+	FL.x2 = -1;
+	FL.y2 = -1;
+	FL.z2 = -5;
+	FL.x3 = 1;
+	FL.y3 = -1;
+	FL.z3 = -5;
 
-	//work += b;
+	FR.x1 = -1;
+	FR.y1 = 1;
+	FR.z1 = -5;
+	FR.x2 = 1;
+	FR.y2 = 1;
+	FR.z2 = -5;
+	FR.x3 = 1;
+	FR.y3 = -1;
+	FR.z3 = -5;
+
+	BL.x1 = -1;
+	BL.y1 = 1;
+	BL.z1 = -10;
+	BL.x2 = -1;
+	BL.y2 = -1;
+	BL.z2 = -10;
+	BL.x3 = 1;
+	BL.y3 = -1;
+	BL.z3 = -10;
+
+	BR.x1 = -1;
+	BR.y1 = 1;
+	BR.z1 = -10;
+	BR.x2 = 1;
+	BR.y2 = 1;
+	BR.z2 = -10;
+	BR.x3 = 1;
+	BR.y3 = -1;
+	BR.z3 = -10;
 
 	std::cout << "ok" << std::endl;
 
-	top.x = 0;
-	top.y = 2;
-	top.z = -5;
-
-	left.x = -2;
-	left.y = -2;
-	left.z = -5;
-
-	right.x = 2;
-	right.y = -2;
-	right.z = -5;
-
-	//moveRight.x = 0.00025f;
-	//moveRight.y = 0.00025f;
-	//moveRight.z = 0.00025f;
-
-	//scaleUp.x = 1.00025f;
-	//scaleUp.y = 1;
-	//scaleUp.z = 1;
-
 	////////////////////////////////////////////////////////////////////////////
-	
-	rotate.x1 = 0;
-	rotate.y1 = 2;
-	rotate.z1 = -5;
-	rotate.x2 = -2;
-	rotate.y2 = -2;
-	rotate.z2 = -5;
-	rotate.x3 = 2;
-	rotate.y3 = -2;
-	rotate.z3 = -5;
-
-	rotate2.x1 = cos(0.00025f);
-	rotate2.y1 = -sin(0.00025f);
-	rotate2.z1 = 0;
-	rotate2.x2 = sin(0.00025f);
-	rotate2.y2 = cos(0.00025f);
-	rotate2.z2 = 0;
-	rotate2.x3 = 0;
-	rotate2.y3 = 0;
-	rotate2.z3 = 1;
 
 
 	std::cout << "Pause" << std::endl;
@@ -96,20 +102,10 @@ void Game::initialize()
 
 void Game::update()
 {
-	rotate = rotate * rotate2;
-
-	cout << "Update up" << endl;
-	//glRotatef(0.025, 0, 0, 1);
-	//glScalef(1.000025, 1, 1);
-	//glTranslatef(0.00025f, 0.0, 0.0);
-
-	//top += moveRight;
-	//left += moveRight;
-	//right += moveRight;
-	 
-	//top *= scaleUp;
-	//left *= scaleUp;
-	//right *= scaleUp;
+	FL = FL * rotate;
+	FR = FR * rotate;
+	BL = BL * rotate;
+	BR = BR * rotate;
 
 	std::cout << "Check" << std::endl;
 }
@@ -119,9 +115,12 @@ void Game::draw()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glBegin(GL_TRIANGLES);
-	//{ glVertex3f(top.x, top.y, top.z); glVertex3f(left.x, left.y, left.z); glVertex3f(right.x, right.y, right.z); }
-	{ glVertex3f(rotate.x1, rotate.y1, rotate.z1); glVertex3f(rotate.x2, rotate.y2, rotate.z2); glVertex3f(rotate.x3, rotate.y3, rotate.z3); }
+	{ glVertex3f(FL.x1, FL.y1, FL.z1 - 15); glVertex3f(FL.x2, FL.y2, FL.z2 - 15); glVertex3f(FL.x3, FL.y3, FL.z3 - 15); }
+	{ glVertex3f(FR.x1, FR.y1, FR.z1 - 15); glVertex3f(FR.x2, FR.y2, FR.z2 - 15); glVertex3f(FR.x3, FR.y3, FR.z3 - 15); }
+	{ glVertex3f(BL.x1, BL.y1, BL.z1 - 15); glVertex3f(BL.x2, BL.y2, BL.z2 - 15); glVertex3f(BL.x3, BL.y3, BL.z3 - 15); }
+	{ glVertex3f(BR.x1, BR.y1, BR.z1 - 15); glVertex3f(BR.x2, BR.y2, BR.z2 - 15); glVertex3f(BR.x3, BR.y3, BR.z3 - 15); }
 	glEnd();
+
 
 	window.display();
 }
